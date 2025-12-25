@@ -1,0 +1,368 @@
+/* =====================================================
+   GLOBAL
+===================================================== */
+:root {
+  --primary: #0d6efd;
+  --dark: #0b0f19;
+  --muted: #6c757d;
+  --border-soft: rgba(0,0,0,.08);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+   padding-top: 70px; /* tinggi navbar */ 
+  font-family: system-ui, -apple-system, BlinkMacSystemFont,
+               "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  background-color: #fff;
+  color: var(--dark);
+}
+
+body::before {
+  content: "CSS OK";
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: red;
+  color: white;
+  padding: 5px;
+  z-index: 9999;
+}
+
+/* =====================================================
+   NAVBAR
+===================================================== */
+.navbar {
+  background: rgba(255,255,255,.7);
+  backdrop-filter: blur(12px);
+  transition: background .3s ease, box-shadow .3s ease;
+}
+
+.navbar.navbar-scrolled {
+  background: rgba(255,255,255,.9);
+  box-shadow: 0 10px 30px rgba(0,0,0,.08);
+}
+
+.nav-link {
+  position: relative;
+  padding-bottom: .25rem;
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -2px;
+  width: 0%;
+  height: 2px;
+  background-color: var(--primary);
+  transition: width .25s ease;
+}
+
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* =====================================================
+   HERO
+===================================================== */
+/* ================= HERO BACKGROUND ================= */
+.hero-section {
+  background-image: url("/images/foto.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/* gelapin dikit biar teks kebaca */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(5, 10, 20, 0.75);
+  backdrop-filter: blur(2px);
+}
+
+/* ================= CONTENT ================= */
+.hero-content {
+  position: relative;
+  z-index: 2;
+}
+
+/* ================= TITLE GLOW + GLITCH ================= */
+.hero-title {
+  font-size: clamp(2.8rem, 6vw, 4.5rem);
+  font-weight: 800;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+  color: #e0f2ff;
+  text-shadow:
+    0 0 8px #38bdf8,
+    0 0 20px #0ea5e9,
+    0 0 40px #0284c7;
+  animation: glowPulse 2.5s ease-in-out infinite alternate;
+}
+
+/* glitch effect */
+.glitch {
+  position: relative;
+}
+
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  left: 0;
+  width: 100%;
+  opacity: 0.8;
+}
+
+.glitch::before {
+  color: #38bdf8;
+  animation: glitchTop 2s infinite linear alternate-reverse;
+}
+
+.glitch::after {
+  color: #22c55e;
+  animation: glitchBottom 1.5s infinite linear alternate-reverse;
+}
+
+/* ================= SUBTITLE GLOW ================= */
+.hero-subtitle {
+  font-size: 1.1rem;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+}
+
+.glow-text {
+  color: #e5f7ff;
+  text-shadow:
+    0 0 6px #22d3ee,
+    0 0 14px #0ea5e9;
+  animation: glowPulse 3s ease-in-out infinite alternate;
+}
+
+/* ================= ANIMATIONS ================= */
+@keyframes glowPulse {
+  from {
+    text-shadow:
+      0 0 6px #38bdf8,
+      0 0 18px #0ea5e9;
+  }
+  to {
+    text-shadow:
+      0 0 12px #7dd3fc,
+      0 0 30px #38bdf8;
+  }
+}
+
+@keyframes glitchTop {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(-2px, -2px); }
+  40% { transform: translate(-2px, 2px); }
+  60% { transform: translate(2px, -1px); }
+  80% { transform: translate(1px, 2px); }
+  100% { transform: translate(0, 0); }
+}
+
+@keyframes glitchBottom {
+  0% { transform: translate(0, 0); }
+  20% { transform: translate(2px, 2px); }
+  40% { transform: translate(2px, -2px); }
+  60% { transform: translate(-2px, 1px); }
+  80% { transform: translate(-1px, -2px); }
+  100% { transform: translate(0, 0); }
+}
+
+
+/* =====================================================
+   SECTION TITLE
+===================================================== */
+section h2 {
+  position: relative;
+}
+
+section h2::after {
+  content: "";
+  display: block;
+  width: 56px;
+  height: 3px;
+  background: var(--primary);
+  margin: .75rem auto 0;
+  border-radius: 999px;
+}
+
+#about h2::after {
+  content: "";
+  display: block;
+  width: 60px;
+  height: 3px;
+  margin: 12px auto 0;
+  background: var(--primary);
+  border-radius: 999px;
+}
+
+/* ================= ABOUT SECTION FIX ================= */
+.about-section {
+  background: #f1f5f9; /* abu kebiruan */
+  color: #0b0f19;
+  position: relative;
+  z-index: 1;
+}
+
+.about-section h2 {
+  color: #0b0f19;
+}
+
+.about-section p {
+  color: #334155;
+}
+
+
+/* =====================================================
+   CARDS
+===================================================== */
+.card {
+  border: 1px solid var(--border-soft);
+  border-radius: 16px;
+  background: #fff;
+}
+
+.card-hover {
+  transition: transform .35s ease, box-shadow .35s ease;
+  will-change: transform;
+}
+
+.card-hover:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 25px 60px rgba(0,0,0,.15);
+}
+
+.card-img-placeholder {
+  height: 200px;
+  background: linear-gradient(135deg, #adb5bd, #6c757d);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #fff;
+  font-weight: 500;
+}
+
+/* =====================================================
+   SCROLL REVEAL
+===================================================== */
+.scroll-fade {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: all .9s cubic-bezier(.22,1,.36,1);
+}
+
+.scroll-fade.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* =====================================================
+   TEXT DETAILS
+===================================================== */
+small {
+  letter-spacing: .3px;
+}
+
+/* ================= CONTACT ================= */
+.contact-list a {
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .75rem 1.25rem;
+  border-radius: 999px;
+  border: 1px solid rgba(0,0,0,.1);
+  text-decoration: none;
+  color: #0b0f19;
+  transition: all .25s ease;
+}
+
+.contact-list a:hover {
+  background: #0d6efd;
+  color: #fff;
+  transform: translateY(-3px);
+  box-shadow: 0 12px 30px rgba(13,110,253,.25);
+}
+
+/* =====================================================
+   HERO ADVANCED ANIMATION
+===================================================== */
+.hero {
+  background: linear-gradient(
+    -45deg,
+    #0d6efd,
+    #6610f2,
+    #0dcaf0,
+    #6f42c1
+  );
+  background-size: 400% 400%;
+  animation: gradientMove 18s ease infinite;
+  color: #fff;
+}
+
+@keyframes gradientMove {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* HERO TEXT */
+.hero-title {
+  text-shadow: 0 10px 40px rgba(0,0,0,.35);
+  letter-spacing: .5px;
+}
+
+.hero-subtitle {
+  opacity: .9;
+}
+
+/* FLOATING PARTICLES */
+.particles {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    radial-gradient(circle at 20% 30%, rgba(255,255,255,.15) 2px, transparent 2px),
+    radial-gradient(circle at 80% 40%, rgba(255,255,255,.12) 3px, transparent 3px),
+    radial-gradient(circle at 50% 70%, rgba(255,255,255,.1) 2px, transparent 2px);
+  animation: floatParticles 20s linear infinite;
+}
+
+@keyframes floatParticles {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(-60px);
+  }
+}
+
+/* CONTACT */
+.contact-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(0,0,0,.08);
+  color: #212529;
+  text-decoration: none;
+  transition: .3s ease;
+}
+
+.contact-item i {
+  font-size: 1.2rem;
+}
+
+.contact-item:hover {
+  transform: translateY(-5px);
+  color: var(--primary);
+  box-shadow: 0 15px 35px rgba(0,0,0,.12);
+}
